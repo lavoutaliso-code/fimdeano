@@ -1,0 +1,345 @@
+/* ══════════════════════════════════════════════════════════════════════════
+   Checklist Operação Fim de Ano — a pele.
+   Traço e cores vêm da peça da torneira: cinza #6F757B, laranja #FA6503.
+   Tipografia San Francisco (a do iPhone) — ver [[fontes-que-existem-na-chrome-dela]]:
+   só -apple-system e Georgia existem de verdade na Chrome dela.
+   ══════════════════════════════════════════════════════════════════════════ */
+:root{
+  --tinta:#0B0A08; --t2:#6E737A; --t3:#9AA0A7;
+  --laranja:#FA6503; --laranja2:#E25A02; --verde:#1F9D55; --verde2:#158345;
+  --traco:#6F757B; --ouro:#F2B01E;
+  --fundo:#F2F3F6; --cartao:#FFF; --linha:#E7E9ED; --noite:#101317;
+  --sf:-apple-system,'SF Pro Text',BlinkMacSystemFont,system-ui,sans-serif;
+  --sfd:-apple-system,'SF Pro Display',BlinkMacSystemFont,system-ui,sans-serif;
+  --sombra:0 1px 2px rgba(23,28,38,.04),0 24px 48px -30px rgba(23,28,38,.42);
+  --sombra2:0 2px 6px rgba(23,28,38,.05),0 40px 80px -44px rgba(23,28,38,.5);
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+/* ⚠️ [hidden] perde pra qualquer display: sem isto o fecho do checklist nasce
+   DESENHADO POR CIMA da pergunta. */
+[hidden]{display:none!important}
+html{scroll-behavior:smooth}
+body{background:var(--fundo);color:var(--tinta);font-family:var(--sf);
+  -webkit-font-smoothing:antialiased;letter-spacing:-.011em;
+  /* a página rola na vertical e NUNCA na horizontal */
+  overflow-x:hidden}
+img,svg{display:block;max-width:100%}
+b{font-weight:600}
+i{font-style:normal;color:var(--laranja)}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   A TRILHA DAS 3 PARTES — a página é três coisas e isso tem que estar à vista
+   o tempo todo: Checklist · Calculadora · Mentoria ao vivo.
+   ══════════════════════════════════════════════════════════════════════════ */
+.trilha{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;
+  background:rgba(255,255,255,.94);-webkit-backdrop-filter:blur(14px);
+  backdrop-filter:blur(14px);border-bottom:1px solid var(--linha)}
+.trilha a{flex:1;display:flex;align-items:center;justify-content:center;gap:7px;
+  padding:10px 4px 9px;text-decoration:none;color:var(--t3);
+  font-size:11.5px;font-weight:700;letter-spacing:.02em;
+  border-bottom:2.5px solid transparent;transition:color .25s,border-color .25s}
+.trilha a b{width:19px;height:19px;border-radius:999px;background:#E7E9ED;color:#fff;
+  display:grid;place-items:center;font-size:11px;transition:background .25s}
+.trilha a.on{color:var(--tinta);border-bottom-color:var(--laranja)}
+.trilha a.on b{background:var(--laranja)}
+.trilha a.feito b{background:var(--verde)}
+:root{--barra:40px}
+
+/* o rótulo da parte, no topo de cada tela */
+.parte{font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;
+  color:var(--t3);text-align:center}
+.parte b{color:var(--laranja);font-weight:700}
+.parte.clara{color:#7C848F}
+.parte.dentro{margin-bottom:6px}
+.titulao{font-family:var(--sfd);font-weight:700;letter-spacing:-.04em;line-height:1.02;
+  font-size:clamp(30px,6.4vw,54px);text-transform:none}
+.titulao i{color:var(--laranja)}
+.titulao.claro{color:#fff}
+.titulao.claro i{color:#FF9A54}
+
+.tela{min-height:100svh;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;padding:calc(var(--barra) + clamp(12px,2.4vh,30px)) clamp(14px,3vw,40px)
+  clamp(16px,3.2vh,40px);gap:clamp(12px,2.4vh,28px);scroll-margin-top:var(--barra)}
+.tela.claro{background:#FFF}
+.tela.escuro{background:var(--noite);color:#fff}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   1 · CHECKLIST — arquitetura A1 (aprovada): TARJA preta com o título, o CANO
+   no painel fixo logo abaixo e a pergunta trocando por baixo dele.
+   ══════════════════════════════════════════════════════════════════════════ */
+.folha{width:min(560px,100%);height:calc(100svh - var(--barra));
+  background:var(--cartao);box-shadow:var(--sombra2);position:relative;
+  display:flex;flex-direction:column;overflow:hidden}
+
+/* a tarja: branco sobre preto, de borda a borda */
+.tarja{flex:0 0 auto;background:var(--tinta);color:#fff;
+  padding:clamp(13px,2.2vh,20px) 16px clamp(12px,2vh,18px);text-align:center}
+.tarja .k{display:block;font-size:9.5px;font-weight:700;letter-spacing:.32em;
+  color:#FF9A54;text-transform:uppercase;margin-bottom:6px}
+.tarja h1{font-family:var(--sfd);font-weight:700;font-size:clamp(24px,4.2vh,34px);
+  line-height:.97;letter-spacing:-.032em;text-transform:uppercase}
+.tarja h1 i{color:#FF9A54}
+
+/* o painel: o cano mora aqui em cima, sempre à vista */
+.painel{flex:0 0 auto;background:#fff;border-bottom:1px solid var(--linha);
+  padding:10px 14px 9px;z-index:2;display:flex;flex-direction:column;gap:6px;
+  box-shadow:0 10px 24px -22px rgba(23,28,38,.6)}
+.painel .alto{display:flex;align-items:center;justify-content:space-between;
+  font-size:10.5px;text-transform:uppercase;letter-spacing:.09em;color:var(--t3);font-weight:700}
+.painel .alto b{color:var(--laranja);font-family:var(--sfd);font-size:16px}
+#cano{width:100%;height:auto;aspect-ratio:1040/440;display:block}
+
+.pass{display:flex;gap:6px}
+.pass i{flex:1;height:6px;border-radius:999px;background:#E7E9ED;transition:background .32s}
+.pass i.ok{background:var(--verde)} .pass i.furou{background:var(--laranja)}
+.pass i.agora{background:var(--tinta)}
+.falta{font-size:11px;color:var(--t3);text-align:center;letter-spacing:-.01em;min-height:14px}
+.falta.pronta{color:var(--laranja);font-weight:600}
+.aviso{text-align:center;font-size:11.5px;color:var(--laranja);font-weight:600;
+  min-height:0;letter-spacing:-.012em}
+.aviso:empty{display:none}
+
+/* a pergunta da vez */
+/* ⚠️ com `justify-content:center` e conteúdo maior que a caixa, o excesso sai
+   pra CIMA — a pergunta ficava decepada por trás do painel. `auto` nas margens
+   centraliza sem transbordar, e o rolo é a saída quando a tela é curta. */
+.miolo{flex:1 1 auto;min-height:0;overflow-y:auto;display:flex;flex-direction:column;
+  align-items:center;gap:clamp(7px,1.4vh,14px);
+  text-align:center;padding:clamp(10px,2vh,20px) 14px clamp(12px,2.2vh,20px)}
+.miolo>:first-child{margin-top:auto} .miolo>:last-child{margin-bottom:auto}
+.cat{display:inline-block;font-size:10px;font-weight:700;text-transform:uppercase;
+  letter-spacing:.1em;color:var(--laranja);border:1.6px solid rgba(250,101,3,.3);
+  border-radius:999px;padding:4px 11px;flex:0 0 auto}
+.perg{font-family:var(--sfd);font-weight:700;font-size:clamp(19px,3.2vh,26px);
+  line-height:1.14;letter-spacing:-.034em;flex:0 0 auto;max-width:24ch}
+
+/* ⚠️ imagem em caixa POSICIONADA: `max-height:100%` não limita nada em flex item
+   sem altura resolvida — a ilustração subia por cima da pergunta. */
+.arte{flex:1 1 auto;min-height:clamp(74px,12vh,180px);width:100%;position:relative}
+.arte img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
+
+.ops{flex:0 0 auto;display:grid;gap:9px;width:100%}
+.op{display:flex;align-items:center;gap:11px;background:#fff;border:1.8px solid var(--linha);
+  border-radius:16px;padding:12px 13px;cursor:pointer;text-align:left;font-family:var(--sf);
+  transition:border-color .16s,background .16s,transform .14s}
+.op:active{transform:scale(.99)}
+/* ⚠️ CHECK E X PREENCHIDOS: disco cheio na cor, sinal branco por dentro. */
+.mk{width:26px;height:26px;border-radius:999px;display:grid;place-items:center;flex:0 0 auto}
+.mk svg{width:58%;height:58%;stroke:#fff;stroke-width:3.4;fill:none;
+  stroke-linecap:round;stroke-linejoin:round}
+.op.sim .mk{background:var(--verde)} .op.nao .mk{background:var(--laranja)}
+/* ⚠️ `.mk` é display:grid; sem flex no pai, o disco e a palavra EMPILHAM. */
+.rotulo{display:flex;align-items:center;gap:10px;flex:0 0 auto;
+  font-family:var(--sfd);font-weight:700;font-size:16px}
+.op.sim .rotulo{color:var(--verde2)} .op.nao .rotulo{color:var(--laranja2)}
+.diz{font-size:13px;color:var(--t2);line-height:1.25;flex:1}
+.op .art{flex:0 0 auto}
+.op .art img{height:44px;width:auto}
+.op.sim.on{border-color:var(--verde);background:#F4FBF7}
+.op.nao.on{border-color:var(--laranja);background:#FFF8F3}
+
+/* o fecho, no lugar da pergunta */
+.fecho{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;gap:10px;text-align:center;padding:18px;animation:sobe .5s both}
+.selo{font-family:var(--sfd);font-weight:700;font-size:clamp(46px,8vh,72px);line-height:1;
+  color:var(--laranja);letter-spacing:-.04em}
+.fecho h2{font-family:var(--sfd);font-weight:700;font-size:clamp(20px,3.4vh,26px);
+  letter-spacing:-.032em;line-height:1.08}
+.fecho p{color:var(--t2);font-size:14px;max-width:32ch;line-height:1.42}
+.rolar{margin-top:4px;border:0;border-radius:999px;background:var(--tinta);color:#fff;
+  font-family:var(--sf);font-weight:600;font-size:15px;letter-spacing:-.015em;
+  padding:13px 22px;display:inline-flex;align-items:center;gap:9px;cursor:pointer;
+  box-shadow:0 14px 28px -18px rgba(11,10,8,.9)}
+.rolar svg{width:17px;height:17px;animation:pula 1.7s ease-in-out infinite}
+@keyframes pula{0%,100%{transform:translateY(0)}50%{transform:translateY(3px)}}
+@keyframes sobe{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+/* ═══════════ 1b · O CARD PRA PRINTAR ═══════════ */
+.card-caixa{display:flex;flex-direction:column;align-items:center;gap:16px;width:100%}
+.card-moldura{width:min(420px,88vw);border-radius:22px;overflow:hidden;
+  box-shadow:var(--sombra2);background:#fff}
+.card-moldura svg{width:100%;height:auto;display:block}
+.card-acoes{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+.rolar.fantasma{background:#fff;color:var(--tinta);border:1.6px solid var(--linha);
+  box-shadow:none}
+.rolar.fantasma:hover{border-color:#C7CDD5}
+
+/* ═══════════ faixas de texto ═══════════ */
+.faixa{text-align:center;max-width:62ch}
+.etiqueta{display:inline-block;font-size:11.5px;font-weight:700;text-transform:uppercase;
+  letter-spacing:.11em;color:var(--laranja);border:1.5px solid rgba(250,101,3,.3);
+  border-radius:999px;padding:6px 14px;margin-bottom:18px}
+.etiqueta.clara{color:#FFB469;border-color:rgba(255,180,105,.35)}
+.faixa h2{font-family:var(--sfd);font-weight:700;font-size:clamp(24px,4.4vh,44px);
+  letter-spacing:-.038em;line-height:1.06}
+.faixa p{color:var(--t2);font-size:clamp(13.5px,2vh,18px);margin-top:14px;line-height:1.5}
+.escuro .faixa p{color:#9BA2AC}
+
+/* ═══════════ 2 · CALCULADORA ═══════════ */
+.aparelho{display:flex;flex-direction:column;align-items:center;gap:14px;width:100%}
+.moldura{width:min(390px,100%);aspect-ratio:390/780;max-height:min(72svh,780px);
+  background:#0B0A08;border-radius:clamp(30px,6vw,46px);padding:9px;
+  box-shadow:0 2px 4px rgba(0,0,0,.3),0 50px 90px -50px rgba(0,0,0,.85);position:relative}
+.moldura .ilha{position:absolute;top:19px;left:50%;transform:translateX(-50%);
+  width:84px;height:23px;border-radius:999px;background:#0B0A08;z-index:2}
+.moldura iframe{width:100%;height:100%;border:0;border-radius:clamp(23px,5vw,38px);
+  background:#fff;display:block}
+.controles{display:flex;align-items:center;gap:14px}
+.controles button{width:42px;height:42px;border-radius:999px;border:1.6px solid var(--linha);
+  background:#fff;font-size:21px;color:var(--tinta);cursor:pointer;line-height:1;
+  display:grid;place-items:center;transition:border-color .16s,transform .14s}
+.controles button:hover:not(:disabled){border-color:#C7CDD5;transform:translateY(-1px)}
+.controles button:disabled{opacity:.3;cursor:default}
+.rot{font-size:13.5px;color:var(--t2);min-width:13ch;text-align:center;letter-spacing:-.015em}
+.nota{font-size:12.5px;color:var(--t3);text-align:center;max-width:44ch;line-height:1.4}
+
+/* ═══════════ 3 · ANTES → DEPOIS ═══════════ */
+/* ⚠️ CAIXA LARGA E BAIXA ESMAGA A PEÇA. O motor dimensiona o braço pela MENOR
+   folga, então num quadro 600×215 o braço caía pra 30px: cano fino, lucro
+   líquido do tamanho de uma formiga e queda nenhuma. Quadro mais estreito e
+   mais alto devolve o tamanho — é o que faz a moeda ter de onde cair. */
+.duo{display:grid;grid-template-columns:1fr auto 1fr;gap:clamp(10px,1.6vw,22px);
+  align-items:center;width:min(1020px,100%)}
+.quadro{background:#fff;border:1.6px solid var(--linha);border-radius:clamp(16px,2vw,24px);
+  padding:clamp(12px,1.8vh,20px);box-shadow:var(--sombra);display:flex;flex-direction:column;
+  gap:10px;min-width:0}
+.quadro figcaption{display:flex;align-items:center;gap:9px;font-size:clamp(12.5px,1.8vh,15.5px);
+  font-weight:600;color:var(--t2);letter-spacing:-.018em}
+.tag{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;
+  color:#fff;border-radius:999px;padding:4px 10px}
+.tag-x{background:var(--laranja)} .tag-v{background:var(--verde)}
+.quadro svg{width:100%;height:auto;aspect-ratio:1060/660}
+.legenda{font-size:clamp(12px,1.7vh,15px);color:var(--t2);letter-spacing:-.018em;line-height:1.35}
+.legenda b{font-family:var(--sfd);font-size:1.22em;color:var(--tinta)}
+.ruim .legenda b{color:var(--laranja)} .bom .legenda b{color:var(--verde)}
+.seta{color:var(--t3)} .seta svg{width:clamp(34px,4vw,54px)}
+
+/* ═══════════ 4 · MENTORIA ═══════════ */
+.oferta{width:min(640px,100%);text-align:center;display:flex;flex-direction:column;
+  align-items:center;gap:clamp(20px,3.2vh,32px)}
+.oferta h2{font-family:var(--sfd);font-weight:700;font-size:clamp(26px,4.8vh,48px);
+  letter-spacing:-.038em;line-height:1.05}
+.oferta h2 i{color:#FF8A3D}
+
+.etiqueta.viva{color:#fff;background:#E5484D;border-color:#E5484D;margin-bottom:22px;
+  animation:respira 1.8s ease-in-out infinite}
+@keyframes respira{0%,100%{box-shadow:0 0 0 0 rgba(229,72,77,.55)}
+  70%{box-shadow:0 0 0 12px rgba(229,72,77,0)}}
+
+/* ═══ o preço: é o que tem que pegar o olho primeiro ═══ */
+/* o padding de cima é maior: o selo −50% cavalga a borda e comia o «de R$ 1.997» */
+.preco{position:relative;width:100%;border-radius:22px;
+  padding:clamp(26px,3.6vh,36px) 20px clamp(16px,2.4vh,24px);
+  background:linear-gradient(160deg,rgba(255,255,255,.1),rgba(255,255,255,.04));
+  border:1px solid rgba(255,255,255,.16);text-align:center}
+.selo-off{position:absolute;top:-13px;left:50%;transform:translateX(-50%);
+  background:linear-gradient(135deg,#FF8A3D,#FA6503);color:#fff;font-family:var(--sfd);
+  font-weight:700;font-size:15px;letter-spacing:-.01em;border-radius:999px;padding:6px 16px;
+  box-shadow:0 10px 24px -12px rgba(250,101,3,1)}
+.de{font-size:clamp(13px,1.9vh,16px);color:#8E96A1;margin-top:4px}
+.de s{text-decoration-thickness:2px;text-decoration-color:#E5484D}
+.por{display:flex;align-items:flex-start;justify-content:center;gap:6px;
+  margin:4px 0 2px;color:#fff}
+.por .moeda{font-family:var(--sfd);font-weight:700;font-size:clamp(18px,2.6vh,26px);
+  margin-top:clamp(8px,1.4vh,16px)}
+.por b{font-family:var(--sfd);font-weight:700;font-size:clamp(58px,10vh,104px);line-height:.92;
+  letter-spacing:-.045em;font-variant-numeric:tabular-nums}
+.parcela{font-size:clamp(14px,2.1vh,19px);color:#D7DBE1;letter-spacing:-.02em}
+.parcela b{color:#FFB469;font-weight:700}
+.fonte{margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,.12);
+  font-size:12px;color:#848C97;line-height:1.45;letter-spacing:-.005em}
+.fonte b{color:#B9C0C9}
+
+.termo{width:100%;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);
+  border-radius:18px;padding:clamp(13px,2vh,20px) clamp(14px,2.4vw,22px);text-align:left}
+.termo-cab{display:flex;justify-content:space-between;align-items:baseline;
+  font-size:13.5px;color:#9BA2AC;margin-bottom:10px}
+.termo-cab b{font-family:var(--sfd);font-size:17px;color:#fff;letter-spacing:-.02em}
+.barra{height:12px;border-radius:999px;background:rgba(255,255,255,.12);overflow:hidden}
+.barra i{display:block;height:100%;border-radius:999px;
+  background:linear-gradient(90deg,#FF8A3D,#FA6503);transition:width .9s cubic-bezier(.3,0,.2,1)}
+.termo-pe{margin-top:9px;font-size:12.5px;color:#8E96A1;letter-spacing:-.01em}
+
+/* o que ela leva — é isto que justifica o preço, então vem ANTES dele */
+.leva-tit{font-family:var(--sfd);font-weight:700;font-size:clamp(16px,2.3vh,20px);
+  letter-spacing:-.025em;color:#fff;align-self:flex-start;margin-bottom:-10px}
+.leva{list-style:none;width:100%;display:grid;gap:9px;text-align:left}
+.leva li{display:flex;align-items:flex-start;gap:12px;
+  background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.12);
+  border-radius:15px;padding:13px 15px}
+.leva li svg{width:23px;height:23px;flex:0 0 auto;color:#FF9A54;margin-top:1px}
+.leva li p{display:flex;flex-direction:column;gap:2px;min-width:0}
+.leva li b{color:#fff;font-weight:700;font-size:clamp(14px,2vh,16.5px);letter-spacing:-.022em;
+  line-height:1.25}
+.leva li span{color:#9BA2AC;font-size:clamp(12.5px,1.75vh,14px);line-height:1.3;
+  letter-spacing:-.012em}
+.leva li.premio{background:rgba(250,101,3,.12);border-color:rgba(250,101,3,.32)}
+.leva li.premio svg{color:#FFB469}
+
+.bonus{display:flex;align-items:center;gap:13px;text-align:left;
+  background:rgba(250,101,3,.11);border:1px solid rgba(250,101,3,.28);
+  border-radius:16px;padding:clamp(12px,1.8vh,17px) clamp(13px,2vw,19px);width:100%}
+.bonus svg{width:26px;height:26px;flex:0 0 auto;color:#FF9A54}
+.bonus p{font-size:clamp(13px,1.8vh,15.5px);color:#E7EAEE;line-height:1.4;letter-spacing:-.015em}
+.bonus b{color:#fff;font-weight:700}
+
+/* ⚠️ O BOTÃO PISCA — é o último elemento da página e tem que puxar o olho. */
+/* ⚠️ É O ÚLTIMO ELEMENTO DA PÁGINA E TEM QUE GRITAR: pulso de luz, brilho que
+   atravessa e o degradê andando. */
+.cta{position:relative;overflow:hidden;width:100%;display:flex;flex-direction:column;
+  align-items:center;gap:4px;border-radius:22px;
+  padding:clamp(19px,3vh,28px) 20px;text-decoration:none;color:#fff;
+  background:linear-gradient(100deg,#FF9A54,#FA6503,#E5484D,#FA6503,#FF9A54);
+  background-size:300% 100%;
+  font-family:var(--sfd);font-weight:700;letter-spacing:-.028em;
+  animation:pisca 1.5s ease-in-out infinite, corre 6s linear infinite;
+  transition:transform .16s}
+.cta span{font-size:clamp(22px,3.6vh,34px);line-height:1.04;position:relative;z-index:1}
+.cta small{font-family:var(--sfd);font-weight:700;font-size:clamp(14px,2.2vh,20px);
+  letter-spacing:-.02em;position:relative;z-index:1;
+  text-transform:uppercase;opacity:.97}
+/* o brilho que atravessa o botão */
+.cta::after{content:'';position:absolute;top:-60%;left:-40%;width:28%;height:220%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.5),transparent);
+  transform:rotate(14deg);animation:brilho 2.6s ease-in-out infinite}
+.cta:hover{transform:translateY(-2px) scale(1.012)}
+@keyframes pisca{
+  0%,100%{box-shadow:0 22px 50px -20px rgba(250,101,3,1),0 0 0 0 rgba(250,101,3,.55)}
+  50%    {box-shadow:0 22px 50px -20px rgba(250,101,3,1),0 0 0 20px rgba(250,101,3,0)}
+}
+@keyframes corre{to{background-position:300% 0}}
+@keyframes brilho{0%{left:-40%}55%,100%{left:120%}}
+@media (prefers-reduced-motion:reduce){
+  .cta{animation:none} .rolar svg{animation:none} html{scroll-behavior:auto}
+}
+.pe-cta{font-size:12.5px;color:#8E96A1;letter-spacing:-.01em}
+.cta.morto{filter:grayscale(.15)}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   CELULAR — não é a mesma tela encolhida. A folha vira tela cheia, os cartões
+   empilham, a torneira fica mais baixa e o antes/depois vira coluna.
+   ══════════════════════════════════════════════════════════════════════════ */
+@media (max-width:760px){
+  .tela{padding:var(--barra) 0 0;gap:0;min-height:100svh}
+  .tela.claro,.tela.escuro{padding:calc(var(--barra) + 22px) 16px 30px}
+  #sec-antes{padding:calc(var(--barra) + 22px) 16px 30px;gap:18px}
+  .folha{width:100%;border-radius:0}
+
+  .duo{grid-template-columns:1fr;gap:14px}
+  .seta{justify-self:center;transform:rotate(90deg)}
+
+  /* a calculadora mora DENTRO de um iPhone — pedido dela. */
+  .moldura{width:min(300px,86vw);padding:7px;border-radius:34px}
+  .moldura .ilha{width:66px;height:18px;top:15px}
+  .moldura iframe{border-radius:28px}
+
+  .oferta{gap:18px}
+}
+@media (max-width:420px){
+    .perg{font-size:18px}
+}
+/* celular deitado: a folha não cabe em pé — deixa rolar em vez de espremer */
+@media (max-height:520px) and (orientation:landscape){
+  .folha{height:auto;min-height:100svh}
+  .arte{min-height:90px}
+}

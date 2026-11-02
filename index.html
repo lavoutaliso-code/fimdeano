@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="pt-BR"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Checklist Operação Fim de Ano</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%9A%B0%3C/text%3E%3C/svg%3E">
+<meta name="description" content="Checklist Operação Fim de Ano — descubra em 5 perguntas onde o dinheiro do seu salão está vazando.">
+<meta name="theme-color" content="#0B0A08">
+<link rel="stylesheet" href="pele.css">
+</head>
+<body>
+
+<!-- ══════════════ A TRILHA DAS 3 PARTES ══════════════
+     ⚠️ A página É três coisas, nesta ordem. A barra fica fixa no topo, acende a
+     parte onde ela está e deixa o nome de cada uma sempre à vista. -->
+<nav class="trilha" id="trilha">
+  <a href="#sec-checklist" data-p="1"><b>1</b><span>Checklist</span></a>
+  <a href="#sec-calc"      data-p="2"><b>2</b><span>Calculadora</span></a>
+  <a href="#sec-mentoria"  data-p="3"><b>3</b><span>Mentoria ao vivo</span></a>
+</nav>
+
+<!-- ══════════════ 1 · CHECKLIST ══════════════
+     Arquitetura APROVADA (A1): tarja preta com o título, o CANO no topo fixo
+     (sempre à vista) e a pergunta trocando por baixo dele. -->
+<section class="tela" id="sec-checklist">
+  <div class="folha">
+
+    <div class="tarja">
+      <span class="k">Checklist</span>
+      <h1>Operação<br><i>Fim de Ano</i></h1>
+    </div>
+
+    <header class="painel">
+      <div class="alto">
+        <span>Gargalos do seu negócio hoje</span>
+        <span><b id="numAtual">1</b> de 5</span>
+      </div>
+      <svg id="cano"></svg>
+      <div class="pass" id="pass"></div>
+      <p class="falta" id="falta">responda as 5 e veja o seu cano</p>
+      <p class="aviso" id="dica"></p>
+    </header>
+
+    <main class="miolo" id="miolo">
+      <span class="cat" id="cat">01 · Aquisição</span>
+      <h2 class="perg" id="texto">—</h2>
+      <div class="arte" id="arte"></div>
+      <div class="ops" id="ops"></div>
+    </main>
+
+    <div class="fecho" id="fecho" hidden>
+      <div class="selo" id="selo">—</div>
+      <h2 id="fechoTit">—</h2>
+      <p id="fechoSub">—</p>
+      <button class="rolar" data-ir="#sec-card">
+        Ver o meu cano
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
+          stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+      </button>
+    </div>
+
+  </div>
+</section>
+
+<!-- ⚠️ A TORNEIRA DO CARD MORA FORA DA SEÇÃO ESCONDIDA. Dentro dela, `display:none`
+     faz o SVG medir 0×0 e o motor desenha um nada — o card saía com um buraco no
+     lugar da peça. -->
+<svg id="canoCartao" viewBox="0 0 1000 350"
+     style="position:fixed;left:-99em;top:0;width:1000px;height:350px"></svg>
+
+<!-- ══════════════ 1b · O CARD PRA PRINTAR ══════════════ -->
+<section class="tela claro" id="sec-card" hidden>
+  <p class="parte"><b>Parte 1</b> · Checklist</p>
+  <div class="faixa">
+    <span class="etiqueta">o seu resultado</span>
+    <h2>Este é o <i>seu</i> cano</h2>
+    <p>Salve a imagem e me marque no story — eu respondo o que tapar primeiro.</p>
+  </div>
+  <div class="card-caixa">
+    <div class="card-moldura"><svg id="cartao" viewBox="0 0 1080 1350"></svg></div>
+    <div class="card-acoes">
+      <button class="rolar" id="baixarCard">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
+          stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M4 20h16"/></svg>
+        Baixar a imagem
+      </button>
+      <button class="rolar fantasma" data-ir="#sec-calc">Ver quanto está vazando</button>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ 2 · CALCULADORA ══════════════ -->
+<section class="tela claro" id="sec-calc">
+  <p class="parte"><b>Parte 2</b> · Calculadora</p>
+  <div class="faixa">
+    <h1 class="titulao">Calculadora<br><i>de precificação</i></h1>
+    <p>O checklist mostra onde fura. A calculadora mostra <b>quanto</b> está vazando —
+       com o seu produto, a sua hora e a conta do seu salão dentro.</p>
+  </div>
+
+  <div class="aparelho">
+    <div class="moldura">
+      <span class="ilha"></span>
+      <iframe id="calc" src="calc/capa-k1.html" title="Calculadora de precificação"></iframe>
+    </div>
+    <p class="nota">Responda dentro do aparelho. Nada é enviado — a conta roda no seu próprio navegador.</p>
+  </div>
+</section>
+
+<!-- ══════════════ 3 · SAIR DISSO → PRA ISSO ══════════════ -->
+<section class="tela" id="sec-antes">
+  <p class="parte"><b>Parte 3</b> · Mentoria ao vivo</p>
+  <div class="faixa">
+    <span class="etiqueta">o que a mentoria faz</span>
+    <h2>Sair <i>disso</i> → pra <i>isso</i></h2>
+    <p>Mesma torneira, mesma água. A diferença é o que chega no fim.</p>
+  </div>
+
+  <div class="duo">
+    <figure class="quadro ruim">
+      <figcaption><span class="tag tag-x">hoje</span>o dinheiro vaza no caminho</figcaption>
+      <svg id="canoAntes"></svg>
+      <p class="legenda"><b id="perdeu">—</b> do que entra se perde antes de chegar em você</p>
+    </figure>
+    <div class="seta" aria-hidden="true">
+      <svg viewBox="0 0 48 24" fill="none" stroke="currentColor" stroke-width="2.6"
+        stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h42M34 3l10 9-10 9"/></svg>
+    </div>
+    <figure class="quadro bom">
+      <figcaption><span class="tag tag-v">depois</span>os 5 gargalos tampados</figcaption>
+      <svg id="canoDepois"></svg>
+      <p class="legenda"><b id="chegou">—</b> chega inteiro no seu lucro líquido</p>
+    </figure>
+  </div>
+</section>
+
+<!-- ══════════════ 4 · MENTORIA ══════════════ -->
+<section class="tela escuro" id="sec-mentoria">
+  <p class="parte clara"><b>Parte 3</b> · Mentoria ao vivo</p>
+  <div class="oferta">
+    <h1 class="titulao claro">Mentoria ao vivo<br><i>esse fim de ano é nosso!</i></h1>
+    <span class="etiqueta viva">● vagas abertas · as 20 primeiras</span>
+
+    <p class="leva-tit">O que você leva</p>
+    <ul class="leva">
+      <li>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+          stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="3"/>
+          <path d="M3 10h18M8 3v4M16 3v4"/><circle cx="8.5" cy="14.5" r="1.1" fill="currentColor" stroke="none"/>
+          <circle cx="12" cy="14.5" r="1.1" fill="currentColor" stroke="none"/>
+          <circle cx="15.5" cy="14.5" r="1.1" fill="currentColor" stroke="none"/></svg>
+        <p><b>20 encontros ao vivo comigo</b><span>todos os dias de novembro</span></p>
+      </li>
+      <li>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+          stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+          <path d="M14 2v6h6M8.5 13.5l2 2 4-4"/></svg>
+        <p><b>Plano prático a cada encontro</b><span>você sai do encontro sabendo o que fazer</span></p>
+      </li>
+      <li>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+          stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="3"/>
+          <path d="M11 18.5h2M9 7.5l1.6 1.6L15 5"/><path d="M9 12h6M9 14.8h4"/></svg>
+        <p><b>Aplicativo individual pra cada mentorada</b><span>pra acompanhar o seu desenvolvimento</span></p>
+      </li>
+      <li>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+          stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.2"/>
+          <path d="M2.5 20c.6-3.7 3.2-5.6 6.5-5.6s5.9 1.9 6.5 5.6"/>
+          <circle cx="17.5" cy="7" r="2.4"/><path d="M17 13c2.6.2 4.2 2 4.5 4.6"/></svg>
+        <p><b>Acompanhamento na comunidade por 3 meses</b><span>o encontro acaba, o suporte não</span></p>
+      </li>
+      <li class="premio">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+          stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h8M12 17v4M5 3h14v5a7 7 0 0 1-14 0z"/>
+          <path d="M5 5H3v2a3 3 0 0 0 3 3M19 5h2v2a3 3 0 0 1-3 3"/></svg>
+        <p><b>Mentorada destaque leva a Mentoria Black</b><span>fazer dinheiro no digital e ter mais fontes de renda</span></p>
+      </li>
+    </ul>
+
+    <!-- ⚠️ CONTA DE DINHEIRO: as parcelas e o total ficam À VISTA na mesma caixa.
+         Nenhum número aqui é derivado em silêncio. -->
+    <div class="preco">
+      <span class="selo-off">−50%</span>
+      <p class="de">de <s>R$ 1.997</s></p>
+      <div class="por">
+        <span class="moeda">R$</span><b id="porValor">1.297</b>
+      </div>
+      <p class="parcela">ou <b id="parcelaTxt">—</b> no cartão</p>
+      <p class="fonte" id="fonteTxt">—</p>
+    </div>
+
+    <div class="termo">
+      <div class="termo-cab">
+        <span>Vagas pra mentoria</span>
+        <b id="termoNum">—</b>
+      </div>
+      <div class="barra"><i id="termoBarra"></i></div>
+      <p class="termo-pe" id="termoPe">—</p>
+    </div>
+
+    <div class="bonus">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M20 12v10H4V12M2 7h20v5H2zM12 22V7M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7zM12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>
+      <p>E as <b>5 primeiras</b> ganham um <b>diagnóstico personalizado do seu Instagram</b> —
+         feito por mim, com o que mudar primeiro.</p>
+    </div>
+
+    <a class="cta" id="cta" href="#">
+      <span>Entrar pra mentoria</span>
+      <small>esse fim de ano é nosso!</small>
+    </a>
+    <p class="pe-cta" id="peCta">O checklist e a calculadora são grátis. A mentoria é o passo seguinte.</p>
+  </div>
+</section>
+
+<script src="motor-torneira.js"></script>
+<script src="conteudo.js"></script>
+<script src="cartao.js"></script>
+<script src="pagina.js"></script>
+</body></html>
