@@ -194,10 +194,18 @@ class Torneira{
       el('path',{d:`M${x-T*.11} ${yTxt+T*.52} L${x} ${yTxt+T*.32} L${x+T*.11} ${yTxt+T*.52}`,
         fill:'none',stroke:LARANJA,'stroke-width':Math.max(2,G.e*.26),
         'stroke-linecap':'round','stroke-linejoin':'round'},g);
-      const t=el('text',{x:x,y:yTxt,'text-anchor':'middle','font-size':fonte,
+      // ⚠️ o 1º rótulo cavalgava o VOLANTE: centralizado no furo, a metade
+      // esquerda do texto caía em cima da torneira. Quando isso ia acontecer, o
+      // texto ancora à esquerda, logo depois do corpo.
+      const nome=this.o.nomes[i].toUpperCase();
+      const larg=nome.length*fonte*.62;
+      const limite=G.xA+T*.25;
+      const invade=(x-larg/2) < limite;
+      const t=el('text',{x: invade?limite:x, y:yTxt,
+        'text-anchor': invade?'start':'middle','font-size':fonte,
         'font-weight':700,fill:LARANJA,'letter-spacing':Math.max(1,T*.016),
         'font-family':"-apple-system,'SF Pro Text',BlinkMacSystemFont,sans-serif"},g);
-      t.textContent=this.o.nomes[i].toUpperCase();
+      t.textContent=nome;
     }
   }
 
