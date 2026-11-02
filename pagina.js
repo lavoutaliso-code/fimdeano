@@ -98,7 +98,9 @@ function narrar(){
 
 function render(){
   const p = PERGUNTAS[i];
-  g('cat').textContent  = `${p.n} · ${p.cat}`;
+  /* ⚠️ era «01 · AQUISIÇÃO», colado na pergunta. Virou só a contagem: o nome do
+     gargalo já aparece no cano, acima do furo. */
+  g('cat').textContent  = `${i+1}/5`;
   g('texto').textContent = p.texto;
   narrar();
   cano.destacar(i);                       // o halo mostra QUAL furo está em jogo
@@ -250,8 +252,9 @@ const reais = v => v.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFrac
     `${n} × R$ ${reais(p)} = <b>R$ ${reais(total)}</b> no parcelado · ` +
     `juros do cartão de ${(i*100).toLocaleString('pt-BR',{minimumFractionDigits:2})}% a.m., ` +
     `a taxa que a Kiwify cobra do comprador. À vista: R$ ${por.toLocaleString('pt-BR')}.`;
+  // o «as 20 primeiras» já está na etiqueta vermelha logo acima — aqui só o corte
   document.querySelector('.selo-off').textContent =
-    '−' + Math.round((1 - por/de)*100) + '%  ·  as 20 primeiras';
+    '−' + Math.round((1 - por/de)*100) + '%';
 })();
 
 (function termometro(){
@@ -281,16 +284,16 @@ const reais = v => v.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFrac
 
 g('baixarCard').addEventListener('click', baixarCartao);
 
-/* ─────────────── A TRILHA DAS 3 PARTES ───────────────
-   Cada seção pertence a uma parte; a barra acende a parte onde ela está e marca
-   de verde as que já passaram. */
+/* ─────────────── A DOCA ───────────────
+   Cada seção pertence a um cômodo; a doca do rodapé acende o cômodo onde ela
+   está e marca de verde os que já passaram. */
 const PARTE_DA_SECAO = {
   'sec-aulao':1,
   'sec-checklist':2, 'sec-card':2,
   'sec-calc':3,
   'sec-antes':4, 'sec-mentoria':4
 };
-const elosTrilha = [...document.querySelectorAll('.trilha a')];
+const elosTrilha = [...document.querySelectorAll('.doca a')];
 function acende(p){
   elosTrilha.forEach(a => {
     const n = +a.dataset.p;
