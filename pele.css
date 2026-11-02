@@ -31,27 +31,14 @@ i{font-style:normal;color:var(--laranja)}
    A DOCA — fixa no RODAPÉ, com símbolo e nome. Sem número: a página não é uma
    fila de etapas, é um lugar com quatro cômodos.
    ══════════════════════════════════════════════════════════════════════════ */
-:root{--doca:62px; --marca:40px}
-
-/* ══════════════════════════════════════════════════════════════════════════
-   A MARCA — fixa no topo de TODAS as telas. É o nome da operação; o título de
-   cada etapa mora dentro da própria tela.
-   ══════════════════════════════════════════════════════════════════════════ */
-.marca{position:fixed;top:0;left:0;right:0;z-index:70;height:var(--marca);
-  display:flex;align-items:center;justify-content:center;
-  background:rgba(255,255,255,.95);-webkit-backdrop-filter:blur(16px);
-  backdrop-filter:blur(16px);border-bottom:1px solid var(--linha)}
-.marca span{font-family:var(--sfd);font-weight:600;font-size:12.5px;
-  text-transform:uppercase;letter-spacing:.2em;color:#8A9097}
-.marca b{font-weight:700;color:var(--laranja)}
+:root{--doca:62px}
 .doca{position:fixed;bottom:0;left:0;right:0;z-index:60;display:flex;
   background:rgba(255,255,255,.95);-webkit-backdrop-filter:blur(16px);
   backdrop-filter:blur(16px);border-top:1px solid var(--linha);
   padding-bottom:env(safe-area-inset-bottom,0)}
 .doca a{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
   gap:4px;padding:9px 2px 8px;text-decoration:none;color:#A9AFB7;
-  font-size:10px;font-weight:600;letter-spacing:-.005em;
-  transition:color .22s}
+  font-size:10px;font-weight:600;letter-spacing:-.005em;transition:color .22s}
 .doca a svg{width:23px;height:23px;flex:0 0 auto}
 .doca a.on{color:var(--laranja)}
 .doca a.feito{color:var(--verde)}
@@ -59,9 +46,13 @@ i{font-style:normal;color:var(--laranja)}
 /* o rótulo da parte, no topo de cada tela */
 .parte{font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;
   color:var(--t3);text-align:center}
-/* ⚠️ TÍTULO PADRÃO DE TODA ETAPA: linha escura + linha laranja, como o
-   «Calculadora / de precificação» aprovado. Vale pro aulão, pro resultado,
-   pro antes/depois e pra mentoria. */
+/* ══════════════════════════════════════════════════════════════════════════
+   ⚠️ O TÍTULO É O TOPO DA TELA, e é IGUAL em todas: linha escura + linha
+   laranja, no molde do «Calculadora / de precificação». Nada de tarja numa
+   tela e etiqueta noutra — um molde só.
+   ══════════════════════════════════════════════════════════════════════════ */
+.topo-tela{flex:0 0 auto;width:100%;text-align:center;
+  padding:clamp(14px,2.4vh,24px) 14px clamp(12px,2vh,20px)}
 .titulao{font-family:var(--sfd);font-weight:700;letter-spacing:-.04em;line-height:1.02;
   font-size:clamp(28px,5.8vw,46px);text-transform:none;text-align:center;color:#2F343A}
 .titulao i{color:var(--laranja);font-style:normal}
@@ -72,7 +63,7 @@ i{font-style:normal;color:var(--laranja)}
 
 .tela{min-height:100svh;display:flex;flex-direction:column;align-items:center;
   justify-content:center;
-  padding:calc(var(--marca) + clamp(14px,2.6vh,30px)) clamp(14px,3vw,40px)
+  padding:clamp(14px,2.6vh,28px) clamp(14px,3vw,40px)
           calc(var(--doca) + clamp(14px,2.6vh,30px));
     /* ⚠️ o padding-top JÁ reserva a marca; com `scroll-margin-top` também a
      reservando, os dois somavam e a folha entrava 34px por baixo da doca. */
@@ -124,20 +115,13 @@ i{font-style:normal;color:var(--laranja)}
    2 · CHECKLIST — arquitetura A1 (aprovada): TARJA preta com o título, o CANO
    no painel fixo logo abaixo e a pergunta trocando por baixo dele.
    ══════════════════════════════════════════════════════════════════════════ */
-.folha{width:min(560px,100%);height:calc(100svh - var(--doca) - var(--marca));
+.folha{width:min(560px,100%);height:calc(100svh - var(--doca));
   background:var(--cartao);box-shadow:var(--sombra2);position:relative;
   display:flex;flex-direction:column;overflow:hidden}
 
 /* a tarja: branco sobre preto, de borda a borda */
-.tarja{flex:0 0 auto;background:var(--tinta);color:#fff;
-  padding:clamp(12px,2vh,18px) 16px clamp(11px,1.8vh,16px);text-align:center}
-.tarja .k{display:block;font-size:9.5px;font-weight:700;letter-spacing:.32em;
-  color:#FF9A54;text-transform:uppercase;margin-bottom:6px}
-/* ⚠️ numa linha só, «OPERAÇÃO FIM DE ANO» quebrava com «ANO» pendurado sozinho.
-   Duas linhas de propósito — e fica mais imponente. */
-.tarja h1{font-family:var(--sfd);font-weight:700;font-size:clamp(25px,4.4vh,36px);
-  line-height:.98;letter-spacing:-.034em;text-transform:uppercase}
-.tarja h1 i{color:#FF9A54}
+/* na folha do checklist o título fica no topo, com um fio que o separa */
+.folha .topo-tela{border-bottom:1px solid var(--linha)}
 
 /* o painel: o cano mora aqui em cima, sempre à vista */
 .painel{flex:0 0 auto;background:#fff;border-bottom:1px solid var(--linha);
@@ -384,11 +368,11 @@ i{font-style:normal;color:var(--laranja)}
    empilham, a torneira fica mais baixa e o antes/depois vira coluna.
    ══════════════════════════════════════════════════════════════════════════ */
 @media (max-width:760px){
-  .tela{padding:var(--marca) 0 var(--doca);gap:0;min-height:100svh}
+  .tela{padding:0 0 var(--doca);gap:0;min-height:100svh}
   /* o aulão é card, não folha sangrada: precisa de margem lateral */
-  #sec-aulao{padding:calc(var(--marca) + 16px) 16px calc(var(--doca) + 18px)}
-  .tela.claro,.tela.escuro{padding:calc(var(--marca) + 18px) 16px calc(var(--doca) + 20px)}
-  #sec-antes{padding:calc(var(--marca) + 18px) 16px calc(var(--doca) + 20px);gap:16px;
+  #sec-aulao{padding:14px 16px calc(var(--doca) + 18px)}
+  .tela.claro,.tela.escuro{padding:14px 16px calc(var(--doca) + 20px)}
+  #sec-antes{padding:14px 16px calc(var(--doca) + 20px);gap:16px;
     justify-content:flex-start}
   .folha{width:100%;border-radius:0}
 
