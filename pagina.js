@@ -137,15 +137,11 @@ g('ops').addEventListener('click', e => {
   setTimeout(() => { i < 4 ? (i++, render()) : fechar(); }, 760);
 });
 
+/* ⚠️ A TELA DO MEIO SAIU. Antes havia um «Dois furos abertos · ver o meu cano»
+   entre a 5ª resposta e o card — um clique a mais pra dizer o que o card já diz.
+   Agora a 5ª resposta leva DIRETO ao resultado. */
 function fechar(){
   const furos = resp.filter(v => v === 'nao').length;
-  const f = FECHO.find(x => furos <= x.ate) || FECHO[FECHO.length-1];
-  g('miolo').hidden = true;
-  g('fecho').hidden = false;
-  g('selo').textContent = furos === 0 ? '0' : furos;
-  g('selo').style.color = furos === 0 ? 'var(--verde)' : 'var(--laranja)';
-  g('fechoTit').textContent = f.tit;
-  g('fechoSub').textContent = f.sub;
   cano.destacar(null);
   narrar();
   g('falta').textContent = 'pronto — este é o seu cano';
@@ -153,6 +149,7 @@ function fechar(){
   g('sec-card').hidden = false;
   canoCartao.desenhar();          // garante a peça medida antes do clone
   montaCartao(furos);
+  setTimeout(() => g('sec-card').scrollIntoView({behavior:'smooth', block:'start'}), 420);
 }
 
 /* ─────────────── 2 · CALCULADORA ─────────────── */

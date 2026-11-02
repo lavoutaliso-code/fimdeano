@@ -138,20 +138,12 @@ i{font-style:normal;color:var(--laranja)}
 .op.sim.on{border-color:var(--verde);background:#F4FBF7}
 .op.nao.on{border-color:var(--laranja);background:#FFF8F3}
 
-/* o fecho, no lugar da pergunta */
-.fecho{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;align-items:center;
-  justify-content:center;gap:10px;text-align:center;padding:18px;animation:sobe .5s both}
-.selo{font-family:var(--sfd);font-weight:700;font-size:clamp(46px,8vh,72px);line-height:1;
-  color:var(--laranja);letter-spacing:-.04em}
-.fecho h2{font-family:var(--sfd);font-weight:700;font-size:clamp(20px,3.4vh,26px);
-  letter-spacing:-.032em;line-height:1.08}
-.fecho p{color:var(--t2);font-size:14px;max-width:32ch;line-height:1.42}
+/* os botões do card */
 .rolar{margin-top:4px;border:0;border-radius:999px;background:var(--tinta);color:#fff;
   font-family:var(--sf);font-weight:600;font-size:15px;letter-spacing:-.015em;
   padding:13px 22px;display:inline-flex;align-items:center;gap:9px;cursor:pointer;
   box-shadow:0 14px 28px -18px rgba(11,10,8,.9)}
-.rolar svg{width:17px;height:17px;animation:pula 1.7s ease-in-out infinite}
-@keyframes pula{0%,100%{transform:translateY(0)}50%{transform:translateY(3px)}}
+.rolar svg{width:17px;height:17px}
 @keyframes sobe{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 
 /* ═══════════ 1b · O CARD PRA PRINTAR ═══════════ */
