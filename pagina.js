@@ -7,7 +7,21 @@ const g = id => document.getElementById(id);
 const CHECK = `<svg viewBox="0 0 24 24"><path d="M4.5 12.6l5 5L19.5 7"/></svg>`;
 const XIS   = `<svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>`;
 
-/* ─────────────── 1 · CHECKLIST ─────────────── */
+/* ─────────────── 1 · AULÃO ───────────────
+   O play liga o vídeo COM SOM — é uma aula, não enfeite de fundo. */
+(function aulao(){
+  const q = g('quadroAulao'), v = g('videoAulao');
+  if(!q) return;
+  const tocar = () => { q.classList.add('tocando'); v.controls = true; v.play(); };
+  g('playAulao').addEventListener('click', tocar);
+  g('btAulao').addEventListener('click', () => {
+    tocar();
+    q.scrollIntoView({behavior:'smooth', block:'center'});
+  });
+  v.addEventListener('pause', () => { if(v.currentTime === 0) q.classList.remove('tocando'); });
+})();
+
+/* ─────────────── 2 · CHECKLIST ─────────────── */
 /* ⚠️ OS MESMOS PARÂMETROS DO `torneiras/problema.html`, sem exceção: braço em
    `max(…, min(H*0.108, 100))`, eixo em 41,5% da altura, chão em 96,5%, lucro
    líquido no fim e os nomes dos gargalos acima dos furos. É o que o motor já faz
@@ -271,9 +285,10 @@ g('baixarCard').addEventListener('click', baixarCartao);
    Cada seção pertence a uma parte; a barra acende a parte onde ela está e marca
    de verde as que já passaram. */
 const PARTE_DA_SECAO = {
-  'sec-checklist':1, 'sec-card':1,
-  'sec-calc':2,
-  'sec-antes':3, 'sec-mentoria':3
+  'sec-aulao':1,
+  'sec-checklist':2, 'sec-card':2,
+  'sec-calc':3,
+  'sec-antes':4, 'sec-mentoria':4
 };
 const elosTrilha = [...document.querySelectorAll('.trilha a')];
 function acende(p){

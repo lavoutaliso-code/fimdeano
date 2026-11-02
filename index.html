@@ -6,7 +6,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%9A%B0%3C/text%3E%3C/svg%3E">
 <meta name="description" content="Checklist Operação Fim de Ano — descubra em 5 perguntas onde o dinheiro do seu salão está vazando.">
 <meta name="theme-color" content="#0B0A08">
-<link rel="stylesheet" href="pele.css?v=5">
+<link rel="stylesheet" href="pele.css?v=6">
 </head>
 <body>
 
@@ -14,10 +14,36 @@
      ⚠️ A página É três coisas, nesta ordem. A barra fica fixa no topo, acende a
      parte onde ela está e deixa o nome de cada uma sempre à vista. -->
 <nav class="trilha" id="trilha">
-  <a href="#sec-checklist" data-p="1"><b>1</b><span>Checklist</span></a>
-  <a href="#sec-calc"      data-p="2"><b>2</b><span>Calculadora</span></a>
-  <a href="#sec-mentoria"  data-p="3"><b>3</b><span>Mentoria ao vivo</span></a>
+  <a href="#sec-aulao"     data-p="1"><b>1</b><span>Aulão</span></a>
+  <a href="#sec-checklist" data-p="2"><b>2</b><span>Checklist</span></a>
+  <a href="#sec-calc"      data-p="3"><b>3</b><span>Calculadora</span></a>
+  <a href="#sec-mentoria"  data-p="4"><b>4</b><span>Mentoria</span></a>
 </nav>
+
+<!-- ══════════════ 1 · AULÃO GRATUITO ══════════════
+     Arquitetura APROVADA (D2): card laranja arredondado com o vídeo 16:9 dentro,
+     e o botão de play NA TELA do vídeo. É a primeira coisa da página. -->
+<section class="tela" id="sec-aulao">
+  <div class="aulao">
+    <header class="aulao-alto">
+      <span class="k">Aulão gratuito</span>
+      <h1>Operação<br><b>Fim de Ano</b></h1>
+    </header>
+
+    <div class="aulao-card">
+      <div class="quadro" id="quadroAulao">
+        <video id="videoAulao" src="video/aulao.mp4" poster="video/aulao-poster.jpg"
+               playsinline preload="metadata"></video>
+        <button class="play" id="playAulao" aria-label="Dar play na aula">
+          <i><svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z"/></svg></i>
+        </button>
+      </div>
+      <p>A aula inteira, de graça: onde o dinheiro do seu salão vaza.</p>
+    </div>
+
+    <button class="aulao-btn" id="btAulao">Assistir o aulão</button>
+  </div>
+</section>
 
 <!-- ══════════════ 1 · CHECKLIST ══════════════
      Arquitetura APROVADA (A1): tarja preta com o título, o CANO no topo fixo
@@ -202,8 +228,8 @@
   </div>
 </section>
 
-<script src="motor-torneira.js?v=5"></script>
-<script src="conteudo.js?v=5"></script>
-<script src="cartao.js?v=5"></script>
-<script src="pagina.js?v=5"></script>
+<script src="motor-torneira.js?v=6"></script>
+<script src="conteudo.js?v=6"></script>
+<script src="cartao.js?v=6"></script>
+<script src="pagina.js?v=6"></script>
 </body></html>

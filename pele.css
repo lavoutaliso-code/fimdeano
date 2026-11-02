@@ -63,8 +63,45 @@ i{font-style:normal;color:var(--laranja)}
 .tela.claro{background:#FFF}
 .tela.escuro{background:var(--noite);color:#fff}
 
+
 /* ══════════════════════════════════════════════════════════════════════════
-   1 · CHECKLIST — arquitetura A1 (aprovada): TARJA preta com o título, o CANO
+   1 · AULÃO GRATUITO — arquitetura D2 (aprovada): card laranja arredondado,
+   vídeo 16:9 INTEIRO dentro dele e o botão de play NA TELA do vídeo.
+   ══════════════════════════════════════════════════════════════════════════ */
+#sec-aulao{background:#FBFBFC}
+.aulao{width:min(560px,100%);display:flex;flex-direction:column;justify-content:center;
+  gap:clamp(16px,2.6vh,26px)}
+.aulao-alto{text-align:center;display:flex;flex-direction:column;align-items:center;gap:11px}
+.aulao-alto .k{font-size:10.5px;font-weight:600;text-transform:uppercase;
+  letter-spacing:.26em;color:var(--t3)}
+.aulao-alto h1{font-family:var(--sfd);font-weight:600;font-size:clamp(25px,4.4vh,34px);
+  line-height:1.14;letter-spacing:-.034em;color:#5B6066}
+.aulao-alto h1 b{font-weight:700;color:#3A3F45}
+
+.aulao-card{background:linear-gradient(135deg,#FF8A3D,#FA6503);border-radius:26px;
+  padding:16px 14px 18px;display:flex;flex-direction:column;align-items:center;gap:13px;
+  box-shadow:0 20px 48px -24px rgba(167,64,0,.75)}
+/* o vídeo mantém o formato ORIGINAL 16:9 — nunca `cover` */
+.quadro{position:relative;width:100%;aspect-ratio:16/9;background:#000;
+  border-radius:16px;overflow:hidden;box-shadow:0 14px 32px -18px rgba(70,26,0,.7)}
+.quadro video{display:block;width:100%;height:100%;object-fit:contain;background:#000}
+/* ⚠️ O PLAY FICA NA TELA DO VÍDEO, não acima dele. Some ao tocar. */
+.play{position:absolute;inset:0;z-index:2;display:grid;place-items:center;border:0;
+  background:rgba(0,0,0,.28);cursor:pointer;transition:opacity .25s}
+.play i{width:62px;height:62px;border-radius:999px;background:#fff;display:grid;
+  place-items:center;box-shadow:0 10px 26px -10px rgba(0,0,0,.8)}
+.play svg{width:24px;height:24px;margin-left:3px;fill:var(--laranja)}
+.quadro.tocando .play{opacity:0;pointer-events:none}
+.aulao-card p{font-size:13px;color:rgba(255,255,255,.95);line-height:1.5;max-width:32ch;
+  text-align:center}
+
+.aulao-btn{display:block;width:100%;font-family:var(--sfd);font-weight:600;font-size:15.5px;
+  color:#5B6066;background:#fff;border:1.5px solid var(--linha);border-radius:999px;
+  padding:15px;cursor:pointer;letter-spacing:-.02em}
+.aulao-btn:hover{border-color:#D5DAE0}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   2 · CHECKLIST — arquitetura A1 (aprovada): TARJA preta com o título, o CANO
    no painel fixo logo abaixo e a pergunta trocando por baixo dele.
    ══════════════════════════════════════════════════════════════════════════ */
 .folha{width:min(560px,100%);height:calc(100svh - var(--barra));
@@ -316,6 +353,8 @@ i{font-style:normal;color:var(--laranja)}
    ══════════════════════════════════════════════════════════════════════════ */
 @media (max-width:760px){
   .tela{padding:var(--barra) 0 0;gap:0;min-height:100svh}
+  /* o aulão precisa de margem lateral: é card, não folha sangrada */
+  #sec-aulao{padding:calc(var(--barra) + 20px) 16px 26px}
   .tela.claro,.tela.escuro{padding:calc(var(--barra) + 18px) 16px 22px}
   #sec-antes{padding:calc(var(--barra) + 22px) 16px 30px;gap:18px}
   .folha{width:100%;border-radius:0}
