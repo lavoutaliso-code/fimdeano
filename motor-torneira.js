@@ -199,7 +199,9 @@ class Torneira{
       // texto ancora à esquerda, logo depois do corpo.
       const nome=this.o.nomes[i].toUpperCase();
       const larg=nome.length*fonte*.62;
-      const limite=G.xA+T*.25;
+      // o volante é o que avança mais à esquerda: ele vai até dxL+412*s no
+      // desenho da J3. É esse o limite, não o começo do cano.
+      const limite=G.dxL+412*G.s+T*.2;
       const invade=(x-larg/2) < limite;
       const t=el('text',{x: invade?limite:x, y:yTxt,
         'text-anchor': invade?'start':'middle','font-size':fonte,
