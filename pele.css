@@ -52,7 +52,7 @@ i{font-style:normal;color:var(--laranja)}
 .parte.clara{color:#7C848F}
 .parte.dentro{margin-bottom:6px}
 .titulao{font-family:var(--sfd);font-weight:700;letter-spacing:-.04em;line-height:1.02;
-  font-size:clamp(30px,6.4vw,54px);text-transform:none}
+  font-size:clamp(26px,5.6vw,48px);text-transform:none}
 .titulao i{color:var(--laranja)}
 .titulao.claro{color:#fff}
 .titulao.claro i{color:#FF9A54}
@@ -169,13 +169,16 @@ i{font-style:normal;color:var(--laranja)}
 
 /* ═══════════ 2 · CALCULADORA ═══════════ */
 .aparelho{display:flex;flex-direction:column;align-items:center;gap:14px;width:100%}
-.moldura{width:min(390px,100%);aspect-ratio:390/780;max-height:min(72svh,780px);
-  background:#0B0A08;border-radius:clamp(30px,6vw,46px);padding:9px;
+.moldura{width:min(360px,92vw);aspect-ratio:390/780;
+  background:#0B0A08;border-radius:clamp(30px,6vw,44px);padding:8px;
   box-shadow:0 2px 4px rgba(0,0,0,.3),0 50px 90px -50px rgba(0,0,0,.85);position:relative}
-.moldura .ilha{position:absolute;top:19px;left:50%;transform:translateX(-50%);
-  width:84px;height:23px;border-radius:999px;background:#0B0A08;z-index:2}
-.moldura iframe{width:100%;height:100%;border:0;border-radius:clamp(23px,5vw,38px);
-  background:#fff;display:block}
+/* ⚠️ a ilha do iPhone TAPAVA o título da calculadora, que foi desenhada sem
+   notch. Decoração que come conteúdo sai. */
+/* a lente recorta; o iframe dentro dela tem o tamanho REAL e é escalado */
+.lente{position:absolute;inset:8px;overflow:hidden;border-radius:clamp(23px,5vw,36px);
+  background:#fff}
+.moldura iframe{width:390px;height:780px;border:0;display:block;
+  transform-origin:0 0;transform:scale(var(--esc,1))}
 .controles{display:flex;align-items:center;gap:14px}
 .controles button{width:42px;height:42px;border-radius:999px;border:1.6px solid var(--linha);
   background:#fff;font-size:21px;color:var(--tinta);cursor:pointer;line-height:1;
@@ -183,7 +186,7 @@ i{font-style:normal;color:var(--laranja)}
 .controles button:hover:not(:disabled){border-color:#C7CDD5;transform:translateY(-1px)}
 .controles button:disabled{opacity:.3;cursor:default}
 .rot{font-size:13.5px;color:var(--t2);min-width:13ch;text-align:center;letter-spacing:-.015em}
-.nota{font-size:12.5px;color:var(--t3);text-align:center;max-width:44ch;line-height:1.4}
+.nota{font-size:12px;color:var(--t3);text-align:center;max-width:44ch;line-height:1.35}
 
 /* ═══════════ 3 · ANTES → DEPOIS ═══════════ */
 /* ⚠️ CAIXA LARGA E BAIXA ESMAGA A PEÇA. O motor dimensiona o braço pela MENOR
@@ -313,7 +316,7 @@ i{font-style:normal;color:var(--laranja)}
    ══════════════════════════════════════════════════════════════════════════ */
 @media (max-width:760px){
   .tela{padding:var(--barra) 0 0;gap:0;min-height:100svh}
-  .tela.claro,.tela.escuro{padding:calc(var(--barra) + 22px) 16px 30px}
+  .tela.claro,.tela.escuro{padding:calc(var(--barra) + 18px) 16px 22px}
   #sec-antes{padding:calc(var(--barra) + 22px) 16px 30px;gap:18px}
   .folha{width:100%;border-radius:0}
 
@@ -321,9 +324,10 @@ i{font-style:normal;color:var(--laranja)}
   .seta{justify-self:center;transform:rotate(90deg)}
 
   /* a calculadora mora DENTRO de um iPhone — pedido dela. */
-  .moldura{width:min(300px,86vw);padding:7px;border-radius:34px}
-  .moldura .ilha{width:66px;height:18px;top:15px}
-  .moldura iframe{border-radius:28px}
+  /* ⚠️ MEDIDO: com 330px o aparelho tinha 660 de altura e a seção passava 89px
+     da tela do iPhone. Em 288 ele tem 576 e a parte 2 cabe inteira, sem rolar. */
+  .moldura{width:min(288px,80vw);padding:6px;border-radius:32px}
+  .lente{inset:6px;border-radius:27px}
 
   .oferta{gap:18px}
 }

@@ -3,19 +3,18 @@
    Nada de caçar string no meio do HTML.
    ══════════════════════════════════════════════════════════════════════════ */
 
-/* 🔴 O LINK DO CHECKOUT. Enquanto for '#', o botão não leva a lugar nenhum. */
-window.LINK_MENTORIA = '#';
+/* ✅ O LINK DO CHECKOUT — conferido no próprio checkout em 02/11/2026:
+   lá aparece «12x de R$ 134,14» e «R$ 1.297,00», exatamente o que esta página
+   calcula. A taxa de 3,49% a.m. da Kiwify está certa. */
+window.LINK_MENTORIA = 'https://pay.kiwify.com.br/UxXGC6V';
 
 /* ══════════════════════════════════════════════════════════════════════════
    O PREÇO. Conta de dinheiro: tudo que a tela mostra sai daqui, e a parcela
    é CALCULADA na frente — não é número digitado à mão.
 
-   ⚠️ A taxa de parcelamento é a que a Kiwify publica: **3,49% ao mês**, acréscimo
-   cobrado do comprador (ajuda.kiwify.com.br → «Como funciona o parcelamento no
-   checkout», lido em 02/11/2026). Os checkouts que já existem na conta dela são
-   todos ASSINATURA — nenhum tem parcelado —, então não deu pra medir a taxa no
-   checkout dela. Quando o produto da mentoria existir, CONFIRA a parcela no
-   checkout real e, se divergir, mude JUROS_AM aqui: a tela inteira acompanha.
+   ✅ CONFERIDO NA FONTE: o checkout pay.kiwify.com.br/UxXGC6V mostra
+   «12x de R$ 134,14» e «R$ 1.297,00» — os mesmos números que esta conta produz
+   com 3,49% a.m. Se o preço mudar, mexa só aqui que a tela inteira acompanha.
    ══════════════════════════════════════════════════════════════════════════ */
 window.PRECO = {
   de: 1997,          // o preço cheio, riscado

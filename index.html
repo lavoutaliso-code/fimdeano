@@ -6,7 +6,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%9A%B0%3C/text%3E%3C/svg%3E">
 <meta name="description" content="Checklist Operação Fim de Ano — descubra em 5 perguntas onde o dinheiro do seu salão está vazando.">
 <meta name="theme-color" content="#0B0A08">
-<link rel="stylesheet" href="pele.css?v=4">
+<link rel="stylesheet" href="pele.css?v=5">
 </head>
 <body>
 
@@ -59,7 +59,6 @@
 
 <!-- ══════════════ 1b · O CARD PRA PRINTAR ══════════════ -->
 <section class="tela claro" id="sec-card" hidden>
-  <p class="parte"><b>Parte 1</b> · Checklist</p>
   <div class="faixa">
     <span class="etiqueta">o seu resultado</span>
     <h2>Resultado diagnóstico<br>do <i>seu plano</i></h2>
@@ -73,35 +72,35 @@
           stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M4 20h16"/></svg>
         Baixar a imagem
       </button>
-      <button class="rolar fantasma" data-ir="#sec-calc">Ver quanto está vazando</button>
     </div>
   </div>
 </section>
 
 <!-- ══════════════ 2 · CALCULADORA ══════════════ -->
 <section class="tela claro" id="sec-calc">
-  <p class="parte"><b>Parte 2</b> · Calculadora</p>
   <div class="faixa">
     <h1 class="titulao">Calculadora<br><i>de precificação</i></h1>
-    <p>O checklist mostra onde fura. A calculadora mostra <b>quanto</b> está vazando —
-       com o seu produto, a sua hora e a conta do seu salão dentro.</p>
+    <p>O checklist mostra <b>onde</b> fura. Aqui você vê <b>quanto</b>.</p>
   </div>
 
   <div class="aparelho">
+    <!-- ⚠️ A calculadora foi DESENHADA para 390×780. Espremida em 286×477 ela
+         ficava ilegível. Agora ela roda no tamanho nativo dentro de `.lente` e é
+         ESCALADA — mesmo desenho, só menor. -->
     <div class="moldura">
-      <span class="ilha"></span>
-      <iframe id="calc" src="calc/capa-k1.html" title="Calculadora de precificação"></iframe>
+      <div class="lente" id="lente">
+        <iframe id="calc" src="calc/capa-k1.html" title="Calculadora de precificação"></iframe>
+      </div>
     </div>
-    <p class="nota">Responda dentro do aparelho. Nada é enviado — a conta roda no seu próprio navegador.</p>
+    <p class="nota">Responda dentro do aparelho — a conta roda no seu próprio celular.</p>
   </div>
 </section>
 
 <!-- ══════════════ 3 · SAIR DISSO → PRA ISSO ══════════════ -->
 <section class="tela" id="sec-antes">
-  <p class="parte"><b>Parte 3</b> · Mentoria ao vivo</p>
   <div class="faixa">
-    <span class="etiqueta">o que a mentoria faz</span>
-    <h2>Sair <i>disso</i> → pra <i>isso</i></h2>
+    <span class="etiqueta">a mentoria</span>
+    <h2>Como resolver <i>de vez</i><br>todos os gargalos</h2>
     <p>Mesma torneira, mesma água. A diferença é o que chega no fim.</p>
   </div>
 
@@ -125,7 +124,6 @@
 
 <!-- ══════════════ 4 · MENTORIA ══════════════ -->
 <section class="tela escuro" id="sec-mentoria">
-  <p class="parte clara"><b>Parte 3</b> · Mentoria ao vivo</p>
   <div class="oferta">
     <h1 class="titulao claro">Mentoria ao vivo<br><i>esse fim de ano é nosso!</i></h1>
     <span class="etiqueta viva">● vagas abertas · as 20 primeiras</span>
@@ -204,8 +202,8 @@
   </div>
 </section>
 
-<script src="motor-torneira.js?v=4"></script>
-<script src="conteudo.js?v=4"></script>
-<script src="cartao.js?v=4"></script>
-<script src="pagina.js?v=4"></script>
+<script src="motor-torneira.js?v=5"></script>
+<script src="conteudo.js?v=5"></script>
+<script src="cartao.js?v=5"></script>
+<script src="pagina.js?v=5"></script>
 </body></html>

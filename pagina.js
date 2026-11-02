@@ -179,6 +179,17 @@ addEventListener('message', e => {
   if(e.data && e.data.calc === 'prox') vaiCalc(c+1);
   if(e.data && e.data.calc === 'ant')  vaiCalc(c-1);
 });
+/* ⚠️ a escala é MEDIDA, não chutada: a lente diz quanto cabe e o iframe de
+   390px é reduzido na proporção exata. Sem isso a calculadora nasce espremida. */
+function ajustaLente(){
+  const l = g('lente'); if(!l) return;
+  const esc = l.clientWidth / 390;
+  l.style.setProperty('--esc', esc.toFixed(5));
+  g('calc').style.setProperty('--esc', esc.toFixed(5));
+}
+ajustaLente();
+new ResizeObserver(ajustaLente).observe(g('lente'));
+
 vaiCalc(0);
 
 /* ─────────────── 3 · ANTES → DEPOIS ─────────────── */
