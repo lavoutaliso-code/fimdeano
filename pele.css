@@ -46,6 +46,15 @@ i{font-style:normal;color:var(--laranja)}
 /* o rótulo da parte, no topo de cada tela */
 .parte{font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;
   color:var(--t3);text-align:center}
+/* a tarja preta que abre a página: o nome da operação, de borda a borda */
+.tarja-topo{flex:0 0 auto;width:100vw;margin-left:calc(50% - 50vw);
+  background:var(--tinta);color:#fff;text-align:center;
+  padding:clamp(16px,2.8vh,26px) 16px clamp(15px,2.4vh,22px)}
+.tarja-topo h1{font-family:var(--sfd);font-weight:700;
+  font-size:clamp(26px,5vh,38px);line-height:.98;letter-spacing:-.036em;
+  text-transform:uppercase}
+.tarja-topo h1 i{color:#FF9A54;font-style:normal}
+
 /* ══════════════════════════════════════════════════════════════════════════
    ⚠️ O TÍTULO É O TOPO DA TELA, e é IGUAL em todas: linha escura + linha
    laranja, no molde do «Calculadora / de precificação». Nada de tarja numa
@@ -77,11 +86,12 @@ i{font-style:normal;color:var(--laranja)}
    vídeo 16:9 INTEIRO dentro dele e o botão de play NA TELA do vídeo.
    ══════════════════════════════════════════════════════════════════════════ */
 #sec-aulao{background:#FBFBFC}
-/* ⚠️ O ERRO DO AULÃO ERA O VAZIO: a seção tinha 100svh, o conteúdo ocupava 512px
-   e sobrava meia tela branca embaixo do botão. Agora o bloco ocupa a altura toda
-   e o CARD cresce pra preencher — nada de ar sem função. */
-.aulao{width:min(560px,100%);flex:1 1 auto;min-height:0;
-  display:flex;flex-direction:column;justify-content:center;gap:clamp(14px,2.4vh,24px)}
+/* ⚠️ O AULÃO NÃO PRECISA DE TELA INTEIRA. Com `min-height:100svh` sobrava meia
+   tela de branco embaixo do botão, porque um vídeo 16:9 é baixo. A seção passa
+   a ter a altura do conteúdo. */
+#sec-aulao{min-height:0;padding-top:0}
+.aulao{width:min(560px,100%);flex:0 0 auto;
+  display:flex;flex-direction:column;gap:clamp(13px,2.2vh,22px)}
 .aulao-alto{flex:0 0 auto;text-align:center}
 
 .aulao-card{flex:0 1 auto;min-height:0;background:linear-gradient(135deg,#FF8A3D,#FA6503);
@@ -370,7 +380,8 @@ i{font-style:normal;color:var(--laranja)}
 @media (max-width:760px){
   .tela{padding:0 0 var(--doca);gap:0;min-height:100svh}
   /* o aulão é card, não folha sangrada: precisa de margem lateral */
-  #sec-aulao{padding:14px 16px calc(var(--doca) + 18px)}
+  #sec-aulao{padding:0 16px clamp(22px,4vh,36px)}
+  #sec-aulao .tarja-topo{margin-left:-16px;width:calc(100% + 32px)}
   .tela.claro,.tela.escuro{padding:14px 16px calc(var(--doca) + 20px)}
   #sec-antes{padding:14px 16px calc(var(--doca) + 20px);gap:16px;
     justify-content:flex-start}
